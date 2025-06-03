@@ -1,9 +1,12 @@
-#!/usr/bin/python3
-class User:
-    def __init__(self, first_name, last_name, age):
-        self.first_name = first_name
-        self.last_name = last_name
-        self.age = age
-
-    def is_valid_password(self, password):
-        return password == "MyPassword123"
+@password.setter
+def password(self, pwd):
+    """
+    Password setter:
+    - `None` if `pwd` is `None`
+    - `None` if `pwd` is not a string
+    - Hash `pwd` in MD5 before assign to `__password`
+    """
+    if pwd is None or type(pwd) is not str:
+        self.__password = None
+    else:
+        self.__password = hashlib.md5(pwd.encode()).hexdigest().lower()
